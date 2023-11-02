@@ -4,12 +4,15 @@ import morgan from 'morgan'
 import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import helmet from 'helmet'
+import dbConnection from './dbConfig/index.js'
 
 dotenv.config()
 
 const app = express()
 
 const PORT = process.env.PORT || 8800
+
+dbConnection()
 
 app.use(cors())
 app.use(helmet())

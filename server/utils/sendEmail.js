@@ -1,22 +1,21 @@
 import nodemailer from 'nodemailer'
 import dotenv from 'dotenv'
 import {v4 as uuidv4} from 'uuid'
-import hashString from './index.js'
+import {hashString} from './index.js'
 import Verification from '../models/emailVerification.js'
 
 dotenv.config()
 
-const { AUTH_EMAIL, AUTH_PASSWORD, APP_URL} = process.env
+const { SMTP_HOST, AUTH_EMAIL, AUTH_PASSWORD, APP_URL} = process.env
 
 let transporter = nodemailer.createTransport({
-    host: "smtp-mail.outlook.com",
+    service: SMTP_HOST,
     auth: {
         user: AUTH_EMAIL,
         pass: AUTH_PASSWORD,
     },
 })
-
-export const sendVerificationEmail = async (req, res) => {
+export const sendVerificationEmail = async (user, res) => {
     const { _id, email, lastName } = user
     
     const token = _id + uuidv4()
@@ -34,7 +33,7 @@ export const sendVerificationEmail = async (req, res) => {
         Please verify your email address so we can know, its you.
         <br>
         This link expires in 1 hour.
-        <a href= ${link}></a>
+        <a href= ${link}>Verify Email Address</a>
         </p>
         </div>`,
         

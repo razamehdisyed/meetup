@@ -1,5 +1,6 @@
 import Users from "../models/userModel.js";
 import { compareString, createJWT, hashString } from "../utils/index.js";
+import { sendVerificationEmail } from "../utils/sendEmail.js";
 
 export const register = async (req, res, next) => {
     const {firstName, lastName, email, password} = req.body
@@ -37,7 +38,7 @@ export const login = async (req, res, next) => {
 
     try {
         //validation
-        if (!email || password) {
+        if (!email || !password) {
             next("Please provide user credentials")
             return
         }

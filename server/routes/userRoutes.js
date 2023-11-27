@@ -8,7 +8,9 @@ import { changePassword,
          verifyEmail,
          friendRequest, 
          getFriendRequest,
-         acceptRequest} from '../controllers/userController.js'
+         acceptRequest,
+         profileViews,
+         suggestedFriends} from '../controllers/userController.js'
 import userAuth from '../middleware/authMiddleware.js'
 
 
@@ -30,7 +32,7 @@ router.post("/friend-request",userAuth, friendRequest)
 router.post("/get-friend-request",userAuth, getFriendRequest)
 
 //ACCEPT OR DENY FRIEND REQUEST
-router.post("accept-request", userAuth, acceptRequest)
+router.post("/accept-request", userAuth, acceptRequest)
 // PROFILE VIEW
 router.post("/profile-view",userAuth, profileViews)
 // SUGGEST FRIENDS

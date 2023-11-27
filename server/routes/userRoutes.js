@@ -31,7 +31,10 @@ router.post("/get-friend-request",userAuth, getFriendRequest)
 
 //ACCEPT OR DENY FRIEND REQUEST
 router.post("accept-request", userAuth, acceptRequest)
-
+// PROFILE VIEW
+router.post("/profile-view",userAuth, profileViews)
+// SUGGEST FRIENDS
+router.post("/suggested-friends",userAuth, suggestedFriends)
 router.get("/verified", (req, res) => {
     res.sendFile(path.join(__dirname, "./views/build/index.html"))
 })

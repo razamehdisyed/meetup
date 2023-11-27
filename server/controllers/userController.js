@@ -367,3 +367,7 @@ export const acceptRequest = async (req, res, next) => {
     });
   }
 };
+
+export const profileViews = async (req, res) => {
+  
+}

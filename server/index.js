@@ -1,7 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
-import dotenv from 'dotenv'
+import dotenv from 'dotenv/config'
 import bodyParser from 'body-parser'
 import helmet from 'helmet'
 import dbConnection from './dbConfig/index.js'
@@ -11,7 +11,7 @@ import path from "path"
 
 const __dirname = path.resolve(path.dirname(""))
 
-dotenv.config()
+// dotenv.config()
 
 const app = express()
 app.use(express.static(path.join(__dirname,"views/build")))

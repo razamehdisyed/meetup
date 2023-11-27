@@ -2,7 +2,7 @@ import mongoose, { Schema } from "mongoose";
 
 //Schema
 
-const requestSchema = Schema ({
+const requestSchema = new mongoose.Schema ({
 
     requestTo: { type: Schema.Types.ObjectId, ref: "Users"},
     requestFrom: { type: Schema.Types.ObjectId, ref: "Users"},
@@ -13,6 +13,6 @@ const requestSchema = Schema ({
 
 )
 
-const FriendRequest = mongoose.model("FriendRequest". requestSchema)
+const FriendRequest = mongoose.model("FriendRequest", requestSchema)
 export default FriendRequest
 

@@ -5,7 +5,7 @@ import Comments from "../models/commentModel.js"
 export const createPost = async (req, res, next) => {
 
     try {
-        const { userId } = req.body.userId
+        const { userId } = req.body.user
         const { description, image } = req.body
 
         if (!description) {

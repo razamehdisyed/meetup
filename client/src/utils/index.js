@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { SetPosts } from '../redux/postSlice'
 
 const API_URL = "http://localhost:8800"
 
@@ -29,7 +30,7 @@ export const apiRequest = async ({ url, token, data, method}) => {
 export const handleFileUpload = async (uploadFile) => {
     const formData = new FormData()
     formData.append("file", uploadFile)
-    formData.append("upload_preset", "socialmedia")
+    formData.append("upload_preset", "meetup")
     try {
         const response = await axios.post(
             `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_ID}/image/upload`,

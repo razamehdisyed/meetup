@@ -26,19 +26,26 @@ export const sendVerificationEmail = async (user, res) => {
         from: AUTH_EMAIL,
         to: email,
         subject: "Email Verification",
-        html: `<div>
-        <h1>Please verify your email address</h1>
+        html: `<div
+        style='font-family: Arial, sans-serif; font-size: 20px; color: #333; background-color: #f7f7f7; padding: 20px; border-radius: 5px;'>
+        <h3 style="color: rgb(8, 56, 188)">Please verify your email address</h3>
         <hr>
-        <h4>Hi, ${lastName}</h4>
+        <h4>Hi ${lastName},</h4>
         <p>
-        Please verify your email address so we can know, its you.
+            Please verify your email address so we can know that it's really you.
+            <br>
+        <p>This link <b>expires in 1 hour</b></p>
         <br>
-        This link expires in 1 hour.
-        <a href= ${link}>Verify Email Address</a>
+        <a href=${link}
+            style="color: #fff; padding: 14px; text-decoration: none; background-color: #000;  border-radius: 8px; font-size: 18px;">Verify
+            Email Address</a>
         </p>
-        </div>`,
-        
-    }
+        <div style="margin-top: 20px;">
+            <h5>Best Regards</h5>
+            <h5>Meet Up Team</h5>
+        </div>
+    </div>`,
+      }
     try {
         const hashedToken = await hashString(token)
 
@@ -67,7 +74,7 @@ export const sendVerificationEmail = async (user, res) => {
 }
 
 export const resetPasswordLink = async (user, res) => {
-    const { _id, email} = user
+    const { _id, email, lastName } = user
 
     const token = _id + uuidv4()
     const link  = APP_URL  + "users/reset-password/" + _id + "/" + token
@@ -76,16 +83,25 @@ export const resetPasswordLink = async (user, res) => {
         from: AUTH_EMAIL,
         to: email,
         subject: "Password Resset",
-        html: `<div>
-        <h1>Please reset your password</h1>
+        html: `<div
+        style='font-family: Arial, sans-serif; font-size: 20px; color: #333; background-color: #f7f7f7; padding: 20px; border-radius: 5px;'>
+        <h3 style="color: rgb(8, 56, 188)">Please verify your email address</h3>
         <hr>
+        <h4>Hi ${lastName},</h4>
         <p>
-        Please change your password using following link.
+            Please verify your email address so we can know that it's really you.
+            <br>
+        <p>This link <b>expires in 1 hour</b></p>
         <br>
-        This link expires in 10 minutes.
-        <a  type='button' href= ${link}>Reset Password</a>
+        <a href=${link}
+            style="color: #fff; padding: 14px; text-decoration: none; background-color: #000;  border-radius: 8px; font-size: 18px;">Verify
+            Email Address</a>
         </p>
-        </div>`,
+        <div style="margin-top: 20px;">
+            <h5>Best Regards</h5>
+            <h5>Meet Up Team</h5>
+        </div>
+    </div>`,
         
     }
     try {

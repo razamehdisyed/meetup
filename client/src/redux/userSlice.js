@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { user } from "../assets/data";
 
 const initialState = {
     user: JSON.parse(window?.localStorage.getItem("user")) ?? {},
@@ -30,7 +31,7 @@ export function UserLogin (user) {
         dispatch(userSlice.actions.login(user))
     }
 }
-export function Logout (user) {
+export function LogOut (user) {
     return (dispatch, getState) => {
         dispatch(userSlice.actions.logout())
     }

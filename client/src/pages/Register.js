@@ -8,6 +8,7 @@ import { Loading, CustomButton, TextInput } from '../components'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { BgImage } from '../assets'
+import { apiRequest } from '../utils'
 
 const Register = () => {
   const { register, handleSubmit, getValues, formState: { errors } } = useForm({ mode: "onChange" })
@@ -16,7 +17,28 @@ const Register = () => {
   const dispatch = useDispatch()
 
   const onSubmit = async(data) => {
+    setIsSubmitting(true)
+    try {
+      const res = await apiRequest ({
+        url : "/auth/register",
+        data : data,
+        method : "POST",
+      })
+        if (res?.status === "failed")
+        {
+          setErrMsg(res)
+        } else {
+          setErrMsg(res)
+          setTimeout(() => {
+            window.location.replace("/login")
+          }, 5000 )
+        }
+        setIsSubmitting(false)
+    } catch (error) {
+      console.log(error)
+      setIsSubmitting(false)
 
+    }
   }
   return (
     <div className='bg-bgColor w-full h-[100vh] flex items-center justify-center p-6'>
@@ -27,7 +49,7 @@ const Register = () => {
             <div className='p-2 bg-[#065ad8] rounded text-white'>
               <TbSocial />
             </div>
-            <span className='text-2xl text-[#065ad8]' font-semibold>
+            <span className='text-2xl text-[#065ad8] font-semibold'>
               Meetup
             </span>
           </div>
@@ -131,7 +153,7 @@ const Register = () => {
           <div className='relative w-full flex items-center justify-center'>
             <img
             src={BgImage}
-            alt='BG Image'
+            alt='BG'
             className='w-48 2xl:w-64 h-48 2xl:h-64 rounded-full object-cover'
 
             />
